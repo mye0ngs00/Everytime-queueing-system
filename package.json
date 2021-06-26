@@ -1,0 +1,18 @@
+{
+  "name": "everytime-queueing-system",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mye0ngs00/Everytime-queueing-system.git"
+  },
+  "author": "myeongsoo, son",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mye0ngs00/Everytime-queueing-system/issues"
+  },
+  "homepage": "https://github.com/mye0ngs00/Everytime-queueing-system#readme"
+}
