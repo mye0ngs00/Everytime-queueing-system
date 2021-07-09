@@ -1,14 +1,25 @@
+/**
+ * settings
+ */
+const isAnonym = true
 const queue = [
   {
-    title: '제목으 ㄴ아무거나 입력할게요',
-    article: '안녕하세요 dpqmfl타임'
+    title: '배고프다.',
+    article: '뭐 먹지?'
   },
   {
-    title: '제목3213213123321입력할게요',
-    article: '안23232321mfl타임'
+    title: '내일 뭐하지',
+    article: '뭐할까?'
+  },
+  {
+    title: '다음 학기 비대면 수업 한대?',
+    article: '아니면 대면도 한대?'
   },
 ]
 
+/**
+ * main
+ */
 describe('Macro', () => {
   const signInfo = Cypress.env('signInfo')
   const boardUri = Cypress.env('board')
@@ -29,6 +40,10 @@ describe('Macro', () => {
       
       cy.get('a#writeArticleButton')
         .click()
+      if (isAnonym) {
+        cy.get('li.anonym')
+          .click()
+      }
       cy.get('input[name=title]')
         .type(item.title)
       cy.get('textarea[name=text]')
@@ -36,7 +51,7 @@ describe('Macro', () => {
       cy.get('li.submit')
         .click()
 
-      const random = 1000 * 60 * 5 + Math.random() * 2 * 1000 * 60 // 5  min + 0~2 min
+      const random = 1000 * 60 * 5 + Math.random() * 2 * 1000 * 60 // 3 min + 0~2 min
       cy.wait(random)
     })
   })
