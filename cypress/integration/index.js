@@ -3,11 +3,16 @@ const queue = [
     title: '제목으 ㄴ아무거나 입력할게요',
     article: '안녕하세요 dpqmfl타임'
   },
+  {
+    title: '제목3213213123321입력할게요',
+    article: '안23232321mfl타임'
+  },
 ]
 
 describe('Macro', () => {
   const signInfo = Cypress.env('signInfo')
   const boardUri = Cypress.env('board')
+
   beforeEach(() => {
     cy.visit(`https://everytime.kr/${boardUri}`)
   })
@@ -30,6 +35,9 @@ describe('Macro', () => {
         .type(item.article)
       cy.get('li.submit')
         .click()
+
+      const random = 1000 * 60 * 5 + Math.random() * 2 * 1000 * 60 // 5  min + 0~2 min
+      cy.wait(random)
     })
   })
 })
