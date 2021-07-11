@@ -51,7 +51,7 @@ describe('Macro', () => {
       cy.get('li.submit')
         .click()
 
-      const random = 1000 * 60 * 5 + Math.random() * 2 * 1000 * 60 // 3 min + 0~2 min
+      const random = 1000 * 60 * 5 + Math.random() * 2 * 1000 * 60 // 5 min + 0~2 min
       cy.wait(random)
     })
   })
