@@ -28,23 +28,34 @@ describe('Macro', () => {
 
     let queue = []
     const pageParser = () => {
-      if (cy.get('a.next').then(($inner) => { $inner.text().includes('다음') })) {
-        cy.get('article > a')
-          .then(el => {
-            const length = Cypress.$(el).length
+      cy.get('div.pagination')
+        .then(($inner) => {
+          if ($inner.text().includes('다음')) {
             cy.get('article > a')
-              .each(($, idx) => {
-                queue.push($)
-                console.log(length)
-                if (length - 1 === idx) {
-                  cy.get('a.next')
-                    .click()
-                    .then(pageParser)
-                }
+              .then(el => {
+                const length = Cypress.$(el).length
+                cy.get('article > a')
+                  .each(($, idx) => {
+                    queue.push($)
+                    if (length - 1 === idx) {
+                      cy.get('a.next')
+                        .click()
+                        .then(pageParser)
+                    }
+                  })
               })
-          })
-      } else return
+          } else return visit()
+        })
     }
-    // cy.wrap($).href cy.visit(href..,.)
+
+    const visit = () => {
+      queue.map((article) => {
+        cy.wrap(article)
+          .invoke('attr', 'href')
+          .then((url) => {
+            cy.visit(`https://everytime.kr${url}`)
+          })
+      })
+    }
   })
 })
